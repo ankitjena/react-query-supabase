@@ -9,14 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^1.15.1",
+    "dayjs": "^1.10.5",
     "next": "11.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-lottie": "^1.2.3",
+    "react-query": "^3.17.2"
   },
   "devDependencies": {
     "@types/react": "17.0.11",
+    "autoprefixer": "^10.2.6",
     "eslint": "7.29.0",
     "eslint-config-next": "11.0.1",
+    "postcss": "^8.3.5",
+    "tailwindcss": "^2.2.4",
     "typescript": "4.3.4"
   }
 }
