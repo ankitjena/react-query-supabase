@@ -1,27 +1,25 @@
 import { useQuery } from 'react-query'
 import supabase from '../app/supabase'
 
-const getUser = async ({userId}) => {
+const getUser = async (userId) => {
   const { data, error } = await supabase
     .from('users')
     .select()
     .eq('id', userId)
+    .single()
 
   if(error) {
     throw new Error(error.message)
   }
 
-  if(!data.length) {
+  if(!data) {
     throw new Error("User not found")
   }
 
-  return data[0]
+  return data
 }
 
-export default function useUser({ userId }) {
-  return useQuery('user', () => getUser({userId}), {
-    enabled: !!userId,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false
-  })
+export default function useUser() {
+  const user = supabase.auth.user()
+  return useQuery('user', () => getUser(user?.id))
 }

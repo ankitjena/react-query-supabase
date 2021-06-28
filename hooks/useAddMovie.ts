@@ -11,7 +11,7 @@ interface Movie {
 
 const addMovie = async (movie: Movie, user_id: string) => {
   const { error } = await supabase
-  .from('movie')
+  .from('movies')
   .upsert(movie)
     .single()
     
@@ -20,7 +20,7 @@ const addMovie = async (movie: Movie, user_id: string) => {
     }
     
     const { data, error: err } = await supabase
-    .from('recommendation')
+    .from('recommendations')
     .upsert({movie_id: movie.movie_id, user_id}, {
       onConflict: 'user_id, movie_id'
     })

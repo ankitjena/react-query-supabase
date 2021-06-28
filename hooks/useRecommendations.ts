@@ -3,9 +3,9 @@ import supabase from '../app/supabase'
 
 const fetchRecommendations = async (user_id) => {
   const { data, error } = await supabase
-    .from('recommendation')
+    .from('recommendations')
     .select(`
-      movie (
+      movies (
         *
       )
     `)
@@ -20,8 +20,5 @@ const fetchRecommendations = async (user_id) => {
 
 export default function useRecommendations() {
   const user = supabase.auth.user()
-  return useQuery('recommendations', () => fetchRecommendations(user?.id), {
-    refetchOnMount: false,
-    refetchOnWindowFocus: false
-  })
+  return useQuery('recommendations', () => fetchRecommendations(user?.id))
 }

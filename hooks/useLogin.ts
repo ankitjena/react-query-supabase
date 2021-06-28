@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useMutation } from 'react-query'
 import supabase from '../app/supabase'
 
 const login = async ({email, password}) => {
@@ -8,7 +8,6 @@ const login = async ({email, password}) => {
   })
 
   if(error) {
-    console.log(error.message)
     throw new Error(error.message)
   }
 
@@ -16,8 +15,5 @@ const login = async ({email, password}) => {
 }
 
 export default function useLogin({ email, password }) {
-  return useQuery('login', () => login({email, password}), {
-    enabled: false,
-    retry: 0
-  })
+  return useMutation('login', () => login({email, password}))
 }

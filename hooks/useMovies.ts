@@ -12,7 +12,6 @@ const searchMovies = async (query) => {
 
 export default function useMovies({ query }) {
   return useQuery('movies', () => searchMovies(query), {
-    enabled: false,
-    retry: 0
+    enabled: false
   })
 }
